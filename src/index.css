@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* This line is crucial for Tailwind v4 to recognize the .dark class */
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  /* Force the background and text colors to follow the theme */
+  html, body {
+    @apply transition-colors duration-500 ease-in-out;
+  }
+}
+
+/* Update your index.css */
+@layer base {
+  html {
+    /* Prevents the white flash if the JS runs but CSS isn't fully ready */
+    background-color: #f8fafc; 
+  }
+
+  html.dark {
+    background-color: #020617; /* slate-950 */
+  }
+}
