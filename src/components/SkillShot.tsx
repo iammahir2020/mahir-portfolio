@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useMotionValue, useTransform } from 'motion/react';
 import { Target, RotateCcw } from 'lucide-react';
 
@@ -16,7 +16,7 @@ export const SkillShot = () => {
   
   // Visual feedback: line stretches and rotates based on drag
   const rotate = useTransform(x, [-100, 100], [-45, 45]);
-  const opacity = useTransform(y, [0, -100], [1, 0]);
+  // const opacity = useTransform(y, [0, -100], [1, 0]);
 
   const handleDragEnd = (_: any, info: any) => {
     // If flicked upward with enough velocity

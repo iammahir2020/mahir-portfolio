@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Bug, Target, X } from 'lucide-react';
+import { Bug, Target } from 'lucide-react';
 
 // Use a simple Error Boundary wrapper if you want to be extra safe
 export const BugSmasher = () => {

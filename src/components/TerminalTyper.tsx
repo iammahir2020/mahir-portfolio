@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Terminal as TerminalIcon, ShieldAlert, ShieldCheck } from "lucide-react";
 
 const COMMANDS = ["sudo systemctl restart", "npm audit fix", "docker-compose up -d", "git push origin main"];
