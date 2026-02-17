@@ -59,17 +59,26 @@ export const Hero = () => {
             </span>
           </div>
 
-          <h1 className="gravity-item text-5xl sm:text-7xl md:text-[9.5rem] font-black flex flex-row gap-2 justify-center tracking-tighter mb-6 md:mb-8 leading-[0.85] select-none">
-            <span className="block text-slate-900 dark:text-white">
-              {RESUME_DATA.name.split(' ')[0]}
+          <motion.h1
+            className="gravity-item text-5xl sm:text-7xl md:text-[9.5rem] font-black flex flex-row gap-2 justify-center tracking-tighter mb-6 md:mb-8 leading-[0.85] select-none text-transparent bg-clip-text 
+             bg-[linear-gradient(110deg,#0f172a,45%,#3b82f6,55%,#0f172a)] 
+             dark:bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)]"
+            style={{
+              backgroundSize: "200% 100%",
+            }}
+            animate={{
+              backgroundPosition: ["200% 0", "-200% 0"],
+            }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <span>
+              {RESUME_DATA.name}
             </span>
-            <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">
-              {RESUME_DATA.name.split(' ')[1]}
-            </span>
-            <span className="block text-slate-900 dark:text-white">
-              {RESUME_DATA.name.split(' ')[2]}
-            </span>
-          </h1>
+          </motion.h1>
 
           <p className="text-base md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium dark:font-light">
             {RESUME_DATA.role} with <span className="text-slate-900 dark:text-white font-semibold">3+ years</span> of experience
