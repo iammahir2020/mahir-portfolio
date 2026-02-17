@@ -1,71 +1,63 @@
-import { motion } from "motion/react";
-import { GraduationCap, Award, BookOpen, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { Calendar, CheckCircle2 } from "lucide-react";
 import { RESUME_DATA } from "../constants/resume";
 
 export const Education = () => {
   return (
-    <section className="py-20 dark:border-slate-900 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        
-        {/* Featured Education Card */}
+    <div className="relative border-l border-slate-200 dark:border-slate-800 ml-4 md:ml-6 space-y-6 pb-4">
+      {RESUME_DATA.education.map((edu, idx) => (
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          key={idx}
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="gravity-item relative p-8 rounded-[2.5rem] bg-gradient-to-br from-blue-500/5 to-transparent dark:from-blue-500/10 dark:to-transparent border border-blue-100 dark:border-blue-500/20 shadow-xl shadow-blue-500/5"
+          transition={{ duration: 0.4, delay: idx * 0.1 }}
+          className="relative pl-8 group"
         >
-          {/* Decorative Icon for Light Mode */}
-          <div className="absolute -top-6 -right-6 p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-lg">
-            <GraduationCap className="text-blue-500" size={32} />
-          </div>
+          {/* Timeline Dot */}
+          <div className="absolute -left-[6px] top-1.5 w-3 h-3 rounded-full bg-slate-200 dark:bg-slate-800 border-2 border-white dark:border-slate-950 group-hover:bg-blue-500 group-hover:scale-125 transition-all duration-300" />
 
-          <div className="mb-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">
-              {RESUME_DATA.education.degree}
-            </h3>
-            <p className="text-blue-600 dark:text-blue-400 font-medium text-lg">
-              {RESUME_DATA.education.institution}
-            </p>
-          </div>
+          {/* Compact Card */}
+          <div className="p-5 md:p-6 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/50 hover:border-blue-500/30 transition-all duration-300 shadow-sm hover:shadow-md">
+            
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-mono text-[10px] font-bold uppercase tracking-wider">
+                  <Calendar size={12} />
+                  {edu.period}
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white leading-tight">
+                  {edu.degree}
+                </h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">
+                  {edu.institution}
+                </p>
+              </div>
 
-          <div className="flex flex-wrap gap-3 items-center">
-            <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 rounded-2xl text-sm font-bold border border-blue-200 dark:border-blue-500/30">
-              <Star size={14} className="fill-current" />
-              CGPA: {RESUME_DATA.education.cgpa}
+              {/* Minimalist GPA Badge */}
+              <div className="shrink-0 px-3 py-1 bg-slate-100 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+                 <span className="text-[10px] font-mono font-black text-blue-600 dark:text-blue-400">
+                   GPA: {edu.cgpa}
+                 </span>
+              </div>
             </div>
-            <span className="text-slate-500 dark:text-slate-400 text-sm font-mono bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-2xl">
-              Class of {RESUME_DATA.education.year}
-            </span>
+
+            {/* Key Details - Tighter list */}
+            {edu.keyDetails && (
+              <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-slate-100 dark:border-slate-800/50">
+                {edu.keyDetails.map((detail, k) => (
+                  <div key={k} className="flex items-center gap-2 group/item">
+                    <CheckCircle2 size={12} className="text-emerald-500/60" />
+                    <span className="text-xs text-slate-500 dark:text-slate-400">
+                      {detail}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </motion.div>
-
-        {/* Details and Achievements */}
-        <div className="gravity-item space-y-8">
-          <div className="group flex gap-5 items-start">
-            <div className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-blue-500 transition-colors group-hover:bg-blue-500 group-hover:text-white">
-              <Award size={24} />
-            </div>
-            <div>
-              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Faculty Background</h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Conducted lab courses on programming, data structures, and algorithms while mentoring students in web development competitions.
-              </p>
-            </div>
-          </div>
-
-          <div className="group flex gap-5 items-start">
-            <div className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-blue-500 transition-colors group-hover:bg-blue-500 group-hover:text-white">
-              <BookOpen size={24} />
-            </div>
-            <div>
-              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Research & Development</h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Collaborated with faculty on technical evaluations and maintained the university website frontend using modern React architecture.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 };

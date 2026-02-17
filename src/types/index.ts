@@ -9,19 +9,28 @@ export interface Project {
   githubBackendRepo?: string;
   liveSite?: string;
 }
+
+export interface JobHistory{
+  role: string;
+  period: string;
+  description: string;
+  keyRole: boolean;
+  responsibilities: string[];
+}
   
   export interface ExperienceItem {
     company: string;
-    role: string;
-    period: string;
-    description: string;
+    location: string;
+    history: JobHistory[];
   }
 
   export interface EducationItem{
     degree: string;
     institution: string;
+    location: string;
     cgpa: string;
-    year: string;
+    period: string;
+    keyDetails: string[];
   }
   
   export interface ResumeData {
@@ -39,6 +48,7 @@ export interface Project {
     experience: ExperienceItem[];
     projects: Project[];
     petProjects: Project[];
-    education: EducationItem;
+    education: EducationItem[];
     location: string;
+    aboutMe: string;
   }

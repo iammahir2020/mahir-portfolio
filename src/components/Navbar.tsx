@@ -16,7 +16,7 @@ export const Navbar = () => {
                       p-3 md:p-4 rounded-2xl shadow-lg shadow-slate-200/20 dark:shadow-none transition-colors duration-500">
         
         <span className="gravity-item font-bold tracking-tighter text-lg md:text-xl text-slate-900 dark:text-white">
-          Mr M<span className="text-blue-500">.</span>
+          Mr Mahir<span className="text-blue-500">.</span>
         </span>
 
         <div className="gravity-item flex gap-4 md:gap-6 items-center text-slate-500 dark:text-slate-400">

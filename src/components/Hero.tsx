@@ -1,14 +1,14 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { RESUME_DATA } from "../constants/resume";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export const Hero = () => {
   const containerRef = useRef(null);
-  
-  const { scrollYProgress } = useScroll({ 
-    target: containerRef, 
-    offset: ["start start", "end start"] 
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
   });
 
   /**
@@ -22,8 +22,8 @@ export const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section 
-      ref={containerRef} 
+    <section
+      ref={containerRef}
       className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-700"
     >
       {/* LAYER 1: Parallax Background Glows */}
@@ -32,7 +32,7 @@ export const Hero = () => {
       </motion.div>
 
       {/* LAYER 2: Decorative Floating Rings (Centered behind text) */}
-      <motion.div 
+      <motion.div
         style={{ y: ringY }}
         className="absolute z-5 opacity-20 pointer-events-none flex items-center justify-center"
       >
@@ -42,8 +42,8 @@ export const Hero = () => {
       </motion.div>
 
       {/* LAYER 3: Content Layer */}
-      <motion.div 
-        style={{ y: textY, opacity }} 
+      <motion.div
+        style={{ y: textY, opacity }}
         className="relative z-10 w-full flex flex-col items-center px-6"
       >
         <motion.div
@@ -53,17 +53,12 @@ export const Hero = () => {
           className="text-center"
         >
           {/* Status Badge */}
-          <div className="gravity-item inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm mb-6 md:mb-10">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-            </span>
+          <div className="gravity-item inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200 dark:border-blue-800 shadow-sm mb-6 md:mb-10">
             <span className="text-slate-600 dark:text-slate-300 font-mono text-[10px] md:text-xs font-bold tracking-widest uppercase">
               Always open for New Experiences
             </span>
-            <Sparkles size={14} className="text-blue-500 ml-1" />
           </div>
-          
+
           <h1 className="gravity-item text-5xl sm:text-7xl md:text-[9.5rem] font-black flex flex-row gap-2 justify-center tracking-tighter mb-6 md:mb-8 leading-[0.85] select-none">
             <span className="block text-slate-900 dark:text-white">
               {RESUME_DATA.name.split(' ')[0]}
@@ -75,19 +70,19 @@ export const Hero = () => {
               {RESUME_DATA.name.split(' ')[2]}
             </span>
           </h1>
-          
+
           <p className="text-base md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium dark:font-light">
-            {RESUME_DATA.role} with <span className="text-slate-900 dark:text-white font-semibold">3+ years</span> of experience 
+            {RESUME_DATA.role} with <span className="text-slate-900 dark:text-white font-semibold">3+ years</span> of experience
             architecting <span className="text-blue-600 dark:text-blue-400 font-semibold">national-scale</span> digital infrastructure.
           </p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
             className="gravity-item mt-12 md:mt-16 flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity"
           >
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-500">Explore Experience</span>
+            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-500">Explore More</span>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -99,8 +94,8 @@ export const Hero = () => {
       </motion.div>
 
       {/* Fine-tuned Grid Background (Only visible in Dark Mode for that "Developer" feel) */}
-      <div className="absolute inset-0 z-[-1] opacity-[0.03] dark:opacity-[0.1] pointer-events-none" 
-           style={{ backgroundImage: `radial-gradient(#3b82f6 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+      <div className="absolute inset-0 z-[-1] opacity-[0.03] dark:opacity-[0.1] pointer-events-none"
+        style={{ backgroundImage: `radial-gradient(#3b82f6 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
     </section>
   );
 };

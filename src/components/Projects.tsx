@@ -56,7 +56,7 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-white/60 dark:bg-slate-950/80 backdrop-blur-md z-[60]"
+              className="fixed inset-0 bg-white/60 dark:bg-slate-950/80 backdrop-blur-md z-[100]"
             />
 
             {/* Modal Content */}
@@ -65,7 +65,7 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
               className="fixed inset-4 md:inset-x-[10%] md:inset-y-[10%] lg:inset-x-[15%] 
                          bg-white dark:bg-slate-900 
                          border border-slate-200 dark:border-slate-800 
-                         rounded-[2.5rem] z-[70] overflow-hidden shadow-2xl flex flex-col md:flex-row"
+                         rounded-[2.5rem] z-[110] overflow-hidden shadow-2xl flex flex-col md:flex-row"
             >
               {/* Image Section */}
               <div className="w-full md:w-1/2 h-48 md:h-auto bg-slate-100 dark:bg-slate-800 relative">
