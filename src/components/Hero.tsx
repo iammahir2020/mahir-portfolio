@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { RESUME_DATA } from "../constants/resume";
-import { ChevronDown, Download } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { ResumeButton } from "./ResumeButton";
 
 export const Hero = () => {
