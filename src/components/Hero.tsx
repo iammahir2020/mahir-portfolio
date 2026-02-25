@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { RESUME_DATA } from "../constants/resume";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
+import { ResumeButton } from "./ResumeButton";
 
 export const Hero = () => {
   const containerRef = useRef(null);
@@ -76,20 +77,26 @@ export const Hero = () => {
             architecting <span className="text-blue-600 dark:text-blue-400 font-semibold">national-scale</span> digital infrastructure.
           </p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="gravity-item mt-12 md:mt-16 flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity"
-          >
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-500">Explore More</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <ChevronDown size={24} className="text-blue-500" />
-            </motion.div>
-          </motion.div>
+          {/* --- Primary Action: Resume Button --- */}
+<ResumeButton resumeLink={RESUME_DATA.resumeLink} />
+
+{/* --- Secondary Hint: Scroll Indicator --- */}
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1.5, duration: 1 }}
+  className="mt-16 md:mt-24 flex flex-col items-center gap-3 opacity-40 hover:opacity-80 transition-opacity cursor-default"
+>
+  <span className="text-[10px] uppercase tracking-[0.5em] font-black text-slate-500 dark:text-slate-400 ml-2">
+    Scroll to Explore
+  </span>
+  <motion.div
+    animate={{ y: [0, 6, 0] }}
+    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+  >
+    <ChevronDown size={20} className="text-blue-500 dark:text-blue-400" />
+  </motion.div>
+</motion.div>
         </motion.div>
       </motion.div>
 

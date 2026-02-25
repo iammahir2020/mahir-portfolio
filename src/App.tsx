@@ -45,13 +45,13 @@ function App() {
       <main className="max-w-6xl mx-auto px-4 md:px-6 space-y-24 md:space-y-40 py-24">
 
         {/* ADD ABOUT ME HERE */}
-        <section id="about" className="scroll-mt-32">
+        {/* <section id="about" className="scroll-mt-32">
           <SectionHeader
             title="Professional Narrative"
             subtitle="Bridging the gap between complex engineering and human-centric design."
           />
           <AboutMe />
-        </section>
+        </section> */}
 
         {/* Experience */}
         <section id="experience" className="scroll-mt-32">

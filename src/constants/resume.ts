@@ -6,11 +6,13 @@ export const RESUME_DATA: ResumeData = {
   email: "mahiralkamal.mak@gmail.com",
   github: "iammahir2020",
   linkedin: "mahiralkamal",
+  resumeLink: "https://drive.google.com/uc?export=download&id=1pJUO0Lo8fpGPVWFTA0cZVjm8T6DoWwlC",
+  
   skills: {
     frontend: ["React.js", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Jinja", "jQuery", "Ag-Grid"],
-    stateManagement: ["Redux", "Redux Thunk", "Context API"],
+    stateManagement: ["Redux",  "Context API"],
     backend: ["Node.js", "Express.js", "MongoDB", "Firestore", "PostgreSQL", "Python"],
-    tools: ["AWS QuickSight", "Tailwind CSS", "Firebase", "Stripe", "Vercel", "Socket.io", "Git", "GitHub", "GitLab"]
+    tools: ["AWS QuickSight", "Tailwind CSS", "Firebase", "Stripe", "Vercel", "Socket.io", "Git", "GitHub", "GitLab", "Docker"]
   },
   experience: [
     {
@@ -25,7 +27,7 @@ export const RESUME_DATA: ResumeData = {
           responsibilities: [
             "Architected the migration of legacy Jinja/jQuery monoliths into modular React + TypeScript ecosystems.",
             "Engineered high-volume data dashboards for Wholesale Roaming Analytics using Yaana Neustring.",
-            "Digitized critical election workflows for the Bangladesh Election Commission.",
+            "Digitized critical election workflows for the Bangladesh Election Commission and Resource Management for the Anti-Corruption Commission.",
             "Optimized frontend performance reducing initial load times by 40%."
           ]
         }
@@ -50,7 +52,7 @@ export const RESUME_DATA: ResumeData = {
           role: "Research Assistant",
           period: "Jan 2023 – Dec 2023",
           keyRole: false,
-          description: "Software research and university-wide digital platform maintenance.",
+          description: "Software research and university-wide digital platform development and maintenance.",
           responsibilities: [
             "Developed and maintained the official IUB university website frontend using React and Redux.",
             "Collaborated on research papers focusing on software logic and optimization.",
@@ -71,7 +73,12 @@ export const RESUME_DATA: ResumeData = {
         "Built high-volume data dashboards",
         "Developed Amazon QuickSight dashboards with custom queries"
       ],
-      image: "/projects/yaana.jpg"
+      coverImage: "/projects/yaanaCover.jpg",
+      gallaryImages: [
+        "/projects/yaana1.jpg",
+        "/projects/yaana2.jpg",
+        "/projects/yaana3.jpg"
+      ]
     },
     {
       title: "EMS & Online Nomination System",
@@ -83,7 +90,12 @@ export const RESUME_DATA: ResumeData = {
         "High-performance components for real-time result reporting",
         "Optimized UI for high-traffic result declaration"
       ],
-      image: "/projects/ems.jpg"
+      coverImage: "/projects/ems.jpg",
+      gallaryImages: [
+        "/projects/ems1.jpg",
+        "/projects/ems2.jpg",
+        "/projects/ems3.jpg"
+      ]
     },
     {
       title: "ACC ERP Platform",
@@ -95,7 +107,29 @@ export const RESUME_DATA: ResumeData = {
         "Integrated secure APIs for unified data actions",
         "Improved workflow efficiency through structured UI and API-driven views"
       ],
-      image: "/projects/acc.jpg"
+      coverImage: "/projects/acc.jpg",
+      gallaryImages: [
+        "/projects/acc1.jpg",
+        "/projects/acc2.jpg",
+        "/projects/acc3.jpg"
+      ]
+    },
+    {
+      title: "Independent University Bangladesh Official Website",
+      tech: ["React.js", "Redux", "Tailwind CSS"],
+      description: "Official university website built with React and Redux, featuring responsive design and dynamic content management.",
+      longDescription: "Led the development of the official university website using React and Redux. Implemented responsive design with Tailwind CSS and integrated dynamic content management features.",
+      features: [
+        "Built with React and Redux for dynamic content management",
+        "Implemented responsive design using Tailwind CSS",
+        "Collaborated with university stakeholders for feature requirements"
+      ],
+      coverImage: "/projects/iub.jpg",
+      gallaryImages: [
+        "/projects/iub1.jpg",
+        "/projects/iub2.jpg",
+        "/projects/iub3.jpg"
+      ]
     }
   ],
   petProjects: [
@@ -110,10 +144,15 @@ export const RESUME_DATA: ResumeData = {
         "Real-time state management with FireStore",
         "Interactive UI with framer-motion animations"
       ],
-      image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1974&auto=format&fit=crop",
-      githubFrontendRepo: "https://github.com/iammahir2020/polashi-client",
-      githubBackendRepo: "https://github.com/iammahir2020/polashi-server",
-      liveSite: "https://battle-of-polashi.vercel.app"
+      coverImage: "/projects/polashi/polashicover.png",
+      gallaryImages: [
+        "/projects/polashi/polashi3.png",
+        "/projects/polashi/polashi1.png",
+        "/projects/polashi/polashi2.png",
+      ],
+      githubFrontendRepo: "https://github.com/iammahir2020/polashi_game_frontend",
+      githubBackendRepo: "https://github.com/iammahir2020/polashi_game_backend",
+      liveSite: "https://the-great-polashi-game.vercel.app/"
     },
     {
       title: "Voter Management & Digital Outreach",
@@ -125,7 +164,15 @@ export const RESUME_DATA: ResumeData = {
         "Dynamic 'Digital Voter Slip' generator for PDF documents",
         "Adaptive Ag-Grid integration for large-scale databases"
       ],
-      image: "/projects/voter.jpg"
+      coverImage: "/projects/voter.jpg",
+      gallaryImages: [
+        // "/projects/voter1.jpg",
+        // "/projects/voter2.jpg",
+        // "/projects/voter3.jpg"
+      ],
+      // githubFrontendRepo: "https://github.com/iammahir2020/polashi_game_frontend",
+      // githubBackendRepo: "https://github.com/iammahir2020/polashi_game_backend",
+      liveSite: "https://tasnimjara.com/"
     },
     {
       title: "ZipGrip Tooling",
@@ -137,7 +184,34 @@ export const RESUME_DATA: ResumeData = {
         "Admin dashboard for inventory updates and order tracking",
         "Secure authentication and profile management"
       ],
-      image: "/projects/zipgrip.jpg"
+      coverImage: "/projects/zipgrip.jpg",
+      gallaryImages: [
+        // "/projects/zipgrip1.jpg",
+        // "/projects/zipgrip2.jpg",
+        // "/projects/zipgrip3.jpg"
+      ],
+      githubFrontendRepo: "https://github.com/iammahir2020/zipGrip-tooling-client",
+      githubBackendRepo: "https://github.com/iammahir2020/zipGrip-tooling-server",
+      liveSite: "https://zipgrip-tooling.web.app/"
+    },
+    {
+      title: "Tech Archive",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Firebase", "Bootstrap"],
+      description: "An Inventory Management System for managing items, tracking quantities, and collecting user reviews.",
+      // longDescription: "Built a full-stack e-commerce platform with secure authentication, profile management, and order handling. Integrated Stripe API for secure payments.",
+      features: [
+        "Built CRUD functionality for item management and review system",
+        "Developed user-friendly UI with responsive design for inventory tracking"
+      ],
+      coverImage: "/projects/techArchive.jpg",
+      gallaryImages: [
+        // "/projects/techArchive1.jpg",
+        // "/projects/techArchive2.jpg",
+        // "/projects/techArchive3.jpg"
+      ],
+      githubFrontendRepo: "https://github.com/iammahir2020/tech-archive-client",
+      githubBackendRepo: "https://github.com/iammahir2020/tech-archive-server",
+      liveSite: "https://tech-archive.web.app/"
     }
   ],
   education: [

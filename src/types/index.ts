@@ -4,7 +4,8 @@ export interface Project {
   description: string; // Short version for card
   longDescription?: string; // Detailed version for modal
   features?: string[];
-  image?: string; // Path to your screenshot
+  coverImage?: string; // Path to your screenshot
+  gallaryImages?: string[]; // Path to your screenshot
   githubFrontendRepo?: string;
   githubBackendRepo?: string;
   liveSite?: string;
@@ -39,6 +40,7 @@ export interface JobHistory{
     email: string;
     github: string;
     linkedin: string;
+    resumeLink: string;
     skills: {
       frontend: string[];
       stateManagement: string[];
