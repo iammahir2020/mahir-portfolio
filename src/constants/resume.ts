@@ -2,7 +2,7 @@ import type { ResumeData } from "../types";
 
 export const RESUME_DATA: ResumeData = {
   name: "Mahir Al Kamal",
-  role: "Software Engineer | Frontend",
+  role: "Software Engineer | Full Stack",
   email: "mahiralkamal.mak@gmail.com",
   github: "iammahir2020",
   linkedin: "mahiralkamal",
@@ -172,7 +172,7 @@ export const RESUME_DATA: ResumeData = {
       ],
       // githubFrontendRepo: "https://github.com/iammahir2020/polashi_game_frontend",
       // githubBackendRepo: "https://github.com/iammahir2020/polashi_game_backend",
-      liveSite: "https://tasnimjara.com/"
+      // liveSite: "https://tasnimjara.com/"
     },
     {
       title: "ZipGrip Tooling",
@@ -215,6 +215,16 @@ export const RESUME_DATA: ResumeData = {
     }
   ],
   education: [
+    {
+      degree: "Master of Science in Computer Science and Engineering",
+      institution: "Independent University, Bangladesh",
+      location: "Dhaka, Bangladesh",
+      cgpa: "0.00",
+      period: "2026 – ",
+      keyDetails: [
+        "Focusing on AI automation"
+      ]
+    },
     {
       degree: "Bachelor of Science in Computer Science and Engineering",
       institution: "Independent University, Bangladesh",
