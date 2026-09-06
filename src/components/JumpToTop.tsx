@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { ArrowUp } from 'lucide-react';
 
 export const JumpToTop = () => {

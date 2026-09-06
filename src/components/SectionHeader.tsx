@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const SectionHeader = ({ title, subtitle}: {title: string, subtitle?: string }) => (
     <div className="max-w-6xl mx-auto mb-12 px-4 md:px-0">

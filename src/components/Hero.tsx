@@ -73,8 +73,8 @@ export const Hero = () => {
           </h1>
 
           <p className="text-base md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium dark:font-light">
-            {RESUME_DATA.role} with <span className="text-slate-900 dark:text-white font-semibold">3+ years</span> of experience
-            architecting <span className="text-blue-600 dark:text-blue-400 font-semibold">national-scale</span> digital infrastructure.
+            {RESUME_DATA.role} with <span className="text-slate-900 dark:text-white font-semibold">~4 years</span> of experience
+            building <span className="text-blue-600 dark:text-blue-400 font-semibold">national-scale</span> digital infrastructure.
           </p>
 
           {/* --- Primary Action: Resume Button --- */}

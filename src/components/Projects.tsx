@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ExternalLink, Github, X, CheckCircle2, Terminal, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, X, CheckCircle2, Terminal, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import type { Project } from "../types";
 
 export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
@@ -10,6 +10,20 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
   // Reset image index when modal closes or project changes
   useEffect(() => {
     setActiveImageIndex(0);
+  }, [selectedProject]);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedProject(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [selectedProject]);
 
   const handleNext = () => {
@@ -28,21 +42,35 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
     <div className="w-full max-w-6xl mx-auto px-4">
       {/* --- GRID VIEW --- */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects.map((project) => (
+        {projects.map((project, idx) => (
           <motion.div
-            layoutId={`card-${project.title}`}
             key={project.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.4, delay: (idx % 4) * 0.08 }}
             onClick={() => setSelectedProject(project)}
-            className="gravity-item group cursor-pointer bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-[2rem] overflow-hidden hover:border-blue-500/50 transition-all shadow-xl shadow-slate-200/50 dark:shadow-none"
+            className="gravity-item group cursor-pointer bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-[2rem] overflow-hidden hover:border-blue-500/50 transition-colors shadow-xl shadow-slate-200/50 dark:shadow-none"
           >
             <div className="aspect-video w-full bg-slate-100 dark:bg-slate-800 overflow-hidden relative">
-              <motion.img 
-                layoutId={`image-${project.title}`}
-                src={project.coverImage} 
+              <img
+                src={project.coverImage}
                 alt={project.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 dark:opacity-60 group-hover:opacity-100"
               />
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent dark:from-slate-950 dark:via-transparent dark:to-transparent" /> */}
+              {/* Hover Overlay: full tech stack + view prompt */}
+              <div className="absolute inset-0 bg-slate-950/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {project.tech.map(t => (
+                    <span key={t} className="text-[9px] font-mono px-2 py-0.5 bg-white/10 text-white rounded border border-white/10 uppercase tracking-tighter font-bold">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2 text-blue-400 font-mono text-xs font-bold uppercase tracking-widest">
+                  View Project <ArrowRight size={14} />
+                </div>
+              </div>
             </div>
 
             <div className="p-8">
@@ -51,9 +79,9 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
                   <span key={t} className="text-[10px] font-mono px-2 py-1 bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-md border border-blue-100 dark:border-blue-500/20 uppercase tracking-tighter font-bold">{t}</span>
                 ))}
               </div>
-              <motion.h3 layoutId={`title-${project.title}`} className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">
+              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">
                 {project.title}
-              </motion.h3>
+              </h3>
               <p className="text-slate-600 dark:text-slate-400 line-clamp-2 text-sm leading-relaxed">{project.description}</p>
             </div>
           </motion.div>
@@ -67,15 +95,19 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setSelectedProject(null)}
               className="fixed inset-0 bg-white/60 dark:bg-slate-950/80 backdrop-blur-md z-[100]"
             />
 
             <motion.div
-              layoutId={`card-${selectedProject.title}`}
-              className="fixed inset-4 md:inset-x-[5%] md:inset-y-[5%] lg:inset-x-[10%] 
-                         bg-white dark:bg-slate-900 
-                         border border-slate-200 dark:border-slate-800 
+              initial={{ opacity: 0, scale: 0.96, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 16 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="fixed inset-4 md:inset-x-[5%] md:inset-y-[5%] lg:inset-x-[10%]
+                         bg-white dark:bg-slate-900
+                         border border-slate-200 dark:border-slate-800
                          rounded-[2.5rem] z-[110] overflow-hidden shadow-2xl flex flex-col lg:flex-row"
             >
               {/* --- IMAGE GALLERY SECTION --- */}
@@ -134,9 +166,9 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
               {/* --- TEXT CONTENT SECTION --- */}
               <div className="flex-1 p-6 md:p-10 lg:p-12 overflow-y-auto custom-scrollbar bg-white dark:bg-slate-900">
                 <div className="flex flex-col gap-4 mb-6">
-                  <motion.h3 layoutId={`title-${selectedProject.title}`} className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight">
                     {selectedProject.title}
-                  </motion.h3>
+                  </h3>
                   
                   <div className="flex gap-4 items-center flex-wrap">
                     {selectedProject.githubFrontendRepo && (
