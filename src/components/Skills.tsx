@@ -3,9 +3,9 @@ import { RESUME_DATA } from "../constants/resume";
 
 const allSkills = [
   ...RESUME_DATA.skills.frontend,
-  ...RESUME_DATA.skills.stateManagement,
-  ...RESUME_DATA.skills.tools,
-  ...RESUME_DATA.skills.backend, // Included backend for a more complete marquee
+  ...RESUME_DATA.skills.backend,
+  ...RESUME_DATA.skills.cloud,
+  ...RESUME_DATA.skills.tooling, // Included tooling for a more complete marquee
 ];
 
 export const Skills = () => {

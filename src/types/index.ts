@@ -11,12 +11,20 @@ export interface Project {
   liveSite?: string;
 }
 
+export interface SubProject {
+  name: string;
+  subtitle?: string;
+  description: string;
+  bullets: string[];
+}
+
 export interface JobHistory{
   role: string;
   period: string;
   description: string;
   keyRole: boolean;
   responsibilities: string[];
+  subProjects?: SubProject[];
 }
   
   export interface ExperienceItem {
@@ -29,11 +37,17 @@ export interface JobHistory{
     degree: string;
     institution: string;
     location: string;
-    cgpa: string;
+    cgpa?: string;
     period: string;
     keyDetails: string[];
   }
-  
+
+  export interface ResearchItem {
+    title: string;
+    status: string;
+    description: string;
+  }
+
   export interface ResumeData {
     name: string;
     role: string;
@@ -42,15 +56,21 @@ export interface JobHistory{
     linkedin: string;
     resumeLink: string;
     skills: {
+      languages: string[];
       frontend: string[];
-      stateManagement: string[];
       backend: string[];
-      tools: string[];
+      databases: string[];
+      cloud: string[];
+      testing: string[];
+      aiMl: string[];
+      tooling: string[];
+      aiAssistedDev: string[];
     };
     experience: ExperienceItem[];
     projects: Project[];
     petProjects: Project[];
     education: EducationItem[];
+    research: ResearchItem[];
     location: string;
     aboutMe: string;
   }

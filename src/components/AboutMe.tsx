@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { RESUME_DATA } from "../constants/resume";
+import { Counter } from "./Counter";
 
 export const AboutMe = () => {
   return (
@@ -31,17 +32,17 @@ export const AboutMe = () => {
             <div className="mt-8 flex flex-wrap gap-4">
                <div className="flex flex-col">
                   <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Experience</span>
-                  <span className="text-lg font-bold text-blue-500">3+ Years</span>
+                  <span className="text-lg font-bold text-blue-500"><Counter to={4} prefix="~" suffix=" Years" /></span>
                </div>
                <div className="w-px h-10 bg-slate-200 dark:bg-slate-800 hidden sm:block" />
                <div className="flex flex-col">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">User Base</span>
-                  <span className="text-lg font-bold text-blue-500">119M+ Serviced</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Approach</span>
+                  <span className="text-lg font-bold text-blue-500">AI-Assisted, Spec-Driven</span>
                </div>
                <div className="w-px h-10 bg-slate-200 dark:bg-slate-800 hidden sm:block" />
                <div className="flex flex-col">
                   <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Focus</span>
-                  <span className="text-lg font-bold text-blue-500">React Architecture</span>
+                  <span className="text-lg font-bold text-blue-500">React + Cloud</span>
                </div>
             </div>
           </div>
@@ -58,9 +59,9 @@ export const AboutMe = () => {
             className="group p-6 rounded-[2rem] bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-colors flex flex-col justify-center"
           >
             
-            <h4 className="font-bold text-lg text-white mb-2">Modernization Expert</h4>
+            <h4 className="font-bold text-lg text-white mb-2">Modernization</h4>
             <p className="text-slate-400 text-sm leading-snug">
-              Architecting the migration of legacy <span className="text-slate-200">Jinja/jQuery</span> stacks into modern <span className="text-slate-200">React ecosystems</span>.
+              Migrating legacy <span className="text-slate-200">Jinja/jQuery</span> stacks into modern <span className="text-slate-200">React ecosystems</span> as part of the frontend team.
             </p>
           </motion.div>
 
@@ -74,7 +75,7 @@ export const AboutMe = () => {
           >
             <h4 className="font-bold text-lg text-white mb-1">Adjunct Faculty</h4>
             <p className="text-blue-100 text-sm leading-snug">
-              Mentoring students in Data Structures, Algorithms, and Python at <span className="text-white font-medium">Independent University Bangladesh</span>.
+              Teaching Algorithms and Data Structures lab courses in Python at <span className="text-white font-medium">Independent University Bangladesh</span>.
             </p>
           </motion.div>
 

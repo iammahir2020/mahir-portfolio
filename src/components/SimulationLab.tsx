@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Terminal, Target, Database, Activity } from "lucide-react";
 
 // Import your games here

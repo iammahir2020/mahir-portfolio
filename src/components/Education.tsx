@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Calendar, CheckCircle2 } from "lucide-react";
 import { RESUME_DATA } from "../constants/resume";
 
@@ -35,11 +35,13 @@ export const Education = () => {
               </div>
 
               {/* Minimalist GPA Badge */}
-              <div className="shrink-0 px-3 py-1 bg-slate-100 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
-                 <span className="text-[10px] font-mono font-black text-blue-600 dark:text-blue-400">
-                   GPA: {edu.cgpa}
-                 </span>
-              </div>
+              {edu.cgpa && (
+                <div className="shrink-0 px-3 py-1 bg-slate-100 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
+                   <span className="text-[10px] font-mono font-black text-blue-600 dark:text-blue-400">
+                     GPA: {edu.cgpa}
+                   </span>
+                </div>
+              )}
             </div>
 
             {/* Key Details - Tighter list */}

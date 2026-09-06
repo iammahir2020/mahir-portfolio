@@ -1,4 +1,5 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring } from "motion/react";
+import { Analytics } from "@vercel/analytics/react";
 
 // Standard components
 import { Navbar } from "./components/Navbar";
@@ -17,6 +18,7 @@ import Footer from "./components/Footer";
 import { SimulationLab } from "./components/SimulationLab";
 import SectionHeader from "./components/SectionHeader";
 import { AboutMe } from "./components/AboutMe";
+import { Research } from "./components/Research";
 
 // --- REFINED SECTION HEADER ---
 
@@ -58,7 +60,7 @@ function App() {
           <SectionHeader title="Professional Experience" subtitle="Building scalable digital infrastructure and figuring out complex UI issues." />
           <div className="space-y-4">
             {RESUME_DATA.experience.map((exp, i) => (
-              <ExperienceCard key={i} item={exp} />
+              <ExperienceCard key={i} item={exp} index={i} />
             ))}
           </div>
         </section>
@@ -100,7 +102,16 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 05: CONTACT (Full-width "Closing" Module) */}
+        {/* SECTION 05: RESEARCH */}
+        <section id="research" className="scroll-mt-32">
+          <SectionHeader
+            title="Research"
+            subtitle="Manuscripts in preparation, co-authored alongside faculty and collaborators."
+          />
+          <Research />
+        </section>
+
+        {/* SECTION 06: CONTACT (Full-width "Closing" Module) */}
         <section id="contact" className="scroll-mt-32">
           <div className=" bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
             <Contact />
@@ -111,6 +122,7 @@ function App() {
 
       {/* Footer */}
       <Footer />
+      <Analytics />
     </div>
   );
 }
