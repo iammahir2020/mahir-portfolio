@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import { SimulationLab } from "./components/SimulationLab";
 import SectionHeader from "./components/SectionHeader";
 import { AboutMe } from "./components/AboutMe";
+import { BlogSection } from "./components/blog/BlogSection";
 
 // --- REFINED SECTION HEADER ---
 
@@ -100,7 +101,19 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 05: CONTACT (Full-width "Closing" Module) */}
+        {/* SECTION 05: BLOGS */}
+        <section id="education" className="scroll-mt-32">
+          <SectionHeader
+            title="My Thoughts"
+
+            subtitle="Informal essays and reflections on software engineering, design, and the tech industry."
+          />
+          <div className="max-w-6xl">
+            <BlogSection />
+          </div>
+        </section>
+
+        {/* SECTION 06: CONTACT (Full-width "Closing" Module) */}
         <section id="contact" className="scroll-mt-32">
           <div className=" bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
             <Contact />
