@@ -172,19 +172,19 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
                   
                   <div className="flex gap-4 items-center flex-wrap">
                     {selectedProject.githubFrontendRepo && (
-                      <a href={selectedProject.githubFrontendRepo} target="_blank" className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors">
+                      <a href={selectedProject.githubFrontendRepo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors">
                         <Github size={18} />
                         <span className="text-[10px] font-mono font-bold uppercase">Frontend</span>
                       </a>
                     )}
                     {selectedProject.githubBackendRepo && (
-                      <a href={selectedProject.githubBackendRepo} target="_blank" className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors">
+                      <a href={selectedProject.githubBackendRepo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors">
                         <Terminal size={16} />
                         <span className="text-[10px] font-mono font-bold uppercase">Backend</span>
                       </a>
                     )}
                     {selectedProject.liveSite && (
-                      <a href={selectedProject.liveSite} target="_blank" className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold">
+                      <a href={selectedProject.liveSite} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold">
                         <ExternalLink size={18} />
                         <span className="text-[10px] font-mono uppercase">Launch Live</span>
                       </a>

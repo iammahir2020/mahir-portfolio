@@ -4,6 +4,75 @@ import nodemailer from "nodemailer";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_URLS_IN_MESSAGE = 3;
 const MIN_SUBMIT_MS = 2000; // reject submissions faster than this (likely bots)
+const MAX_BODY_BYTES = 8 * 1024;
+const MAX_UA_LENGTH = 200;
+
+// Per-IP rate limit. Serverless instances are recycled and requests can land on
+// different instances, so this is a best-effort speed bump rather than a hard
+// guarantee — enough to stop a single client hammering the endpoint in a loop.
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 3;
+const rateLimitHits = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recent = (rateLimitHits.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  recent.push(now);
+  rateLimitHits.set(ip, recent);
+
+  // Opportunistically drop stale buckets so the map cannot grow without bound.
+  if (rateLimitHits.size > 500) {
+    for (const [key, hits] of rateLimitHits) {
+      if (hits.every((t) => now - t >= RATE_LIMIT_WINDOW_MS)) rateLimitHits.delete(key);
+    }
+  }
+
+  return recent.length > RATE_LIMIT_MAX;
+}
+
+function normalizeOrigin(value: string): string {
+  try {
+    return new URL(value).origin;
+  } catch {
+    return "";
+  }
+}
+
+// Origins allowed to submit the form. ALLOWED_ORIGINS (comma-separated) is the
+// source of truth in production; the Vercel-provided deployment URLs and
+// localhost are added so preview deploys and `vercel dev` keep working.
+function getAllowedOrigins(): string[] {
+  const configured = (process.env.ALLOWED_ORIGINS ?? "")
+    .split(",")
+    .map((entry) => normalizeOrigin(entry.trim()))
+    .filter(Boolean);
+
+  const deployment = [process.env.VERCEL_PROJECT_PRODUCTION_URL, process.env.VERCEL_URL]
+    .filter((host): host is string => Boolean(host))
+    .map((host) => `https://${host}`);
+
+  const local =
+    process.env.VERCEL_ENV === "production"
+      ? []
+      : ["http://localhost:5173", "http://localhost:5183", "http://127.0.0.1:5173", "http://127.0.0.1:5183"];
+
+  return [...new Set([...configured, ...deployment, ...local])];
+}
+
+function isAllowedOrigin(req: VercelRequest): boolean {
+  // Browsers always attach Origin to a POST, so a request without one is not a
+  // form submission from the site — reject rather than assume same-origin.
+  const origin = headerString(req.headers.origin) ?? "";
+  const referer = headerString(req.headers.referer) ?? "";
+  const candidate = normalizeOrigin(origin) || normalizeOrigin(referer);
+  if (!candidate) return false;
+  return getAllowedOrigins().includes(candidate);
+}
+
+function getClientIp(req: VercelRequest): string {
+  const forwarded = headerString(req.headers["x-forwarded-for"]);
+  return forwarded?.split(",")[0]?.trim() || req.socket?.remoteAddress || "unknown";
+}
 
 function escapeHtml(input: string): string {
   return input
@@ -46,7 +115,7 @@ function getRequestContext(req: VercelRequest, clientTimezone: unknown) {
   return {
     location,
     timezone,
-    userAgent: userAgent || "Unknown",
+    userAgent: userAgent ? userAgent.slice(0, MAX_UA_LENGTH) : "Unknown",
     language: language || "Unknown",
   };
 }
@@ -55,6 +124,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed." });
+  }
+
+  // Only this site may submit the form. Without this the endpoint is a public
+  // mail relay any page (or curl) could use to flood the inbox.
+  if (!isAllowedOrigin(req)) {
+    return res.status(403).json({ error: "Forbidden." });
+  }
+
+  const contentType = headerString(req.headers["content-type"]) ?? "";
+  if (!contentType.toLowerCase().includes("application/json")) {
+    return res.status(415).json({ error: "Unsupported content type." });
+  }
+
+  const contentLength = Number(headerString(req.headers["content-length"]) ?? "0");
+  if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+    return res.status(413).json({ error: "Payload too large." });
+  }
+
+  if (isRateLimited(getClientIp(req))) {
+    res.setHeader("Retry-After", String(Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)));
+    return res.status(429).json({ error: "Too many messages. Please try again later." });
   }
 
   const body = req.body ?? {};
