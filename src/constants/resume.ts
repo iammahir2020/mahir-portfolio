@@ -132,7 +132,7 @@ export const RESUME_DATA: ResumeData = {
         "Implemented responsive design using Tailwind CSS",
         "Collaborated with university stakeholders for feature requirements"
       ],
-      coverImage: "/projects/iub/cover.png",
+      coverImage: "/projects/iub/cover.webp",
       gallaryImages: []
     }
   ],
@@ -148,7 +148,7 @@ export const RESUME_DATA: ResumeData = {
         "Fails loudly on mismatch instead of guessing",
         "pytest suite across detection, segmentation, and both recognizer paths"
       ],
-      coverImage: "/projects/marks-scanner/cover.png",
+      coverImage: "/projects/marks-scanner/cover.webp",
       gallaryImages: [],
       githubFrontendRepo: "https://github.com/iammahir2020/marks-upload",
       liveSite: "https://d2n2meq17rr1oi.cloudfront.net"
@@ -179,11 +179,11 @@ export const RESUME_DATA: ResumeData = {
         "Multiple concurrent matches off one server process via Socket.io rooms, scoped per match",
         "Real-time state management with FireStore"
       ],
-      coverImage: "/projects/polashi/polashicover.png",
+      coverImage: "/projects/polashi/polashicover.webp",
       gallaryImages: [
-        "/projects/polashi/polashi3.png",
-        "/projects/polashi/polashi1.png",
-        "/projects/polashi/polashi2.png",
+        "/projects/polashi/polashi3.webp",
+        "/projects/polashi/polashi1.webp",
+        "/projects/polashi/polashi2.webp",
       ],
       githubFrontendRepo: "https://github.com/iammahir2020/polashi_game_frontend",
       githubBackendRepo: "https://github.com/iammahir2020/polashi_game_backend",
@@ -199,7 +199,7 @@ export const RESUME_DATA: ResumeData = {
         "Dual alert delivery: Telegram Bot API + WebSocket dashboard",
         "No client polling"
       ],
-      coverImage: "/projects/dse-monitor/cover.png",
+      coverImage: "/projects/dse-monitor/cover.webp",
       gallaryImages: [],
       githubFrontendRepo: "https://github.com/iammahir2020/dse-monitor-frontend",
       githubBackendRepo: "https://github.com/iammahir2020/dse-monitor-backend",
@@ -231,7 +231,7 @@ export const RESUME_DATA: ResumeData = {
         "JWT + RBAC separation between storefront and admin dashboard",
         "Admin dashboard for inventory updates and order tracking"
       ],
-      coverImage: "/projects/zipgrip/cover.png",
+      coverImage: "/projects/zipgrip/cover.webp",
       gallaryImages: [],
       githubFrontendRepo: "https://github.com/iammahir2020/zipGrip-tooling-client",
       githubBackendRepo: "https://github.com/iammahir2020/zipGrip-tooling-server",
@@ -246,7 +246,7 @@ export const RESUME_DATA: ResumeData = {
         "Built CRUD functionality for item management and review system",
         "Developed user-friendly UI with responsive design for inventory tracking"
       ],
-      coverImage: "/projects/tech-archive/cover.png",
+      coverImage: "/projects/tech-archive/cover.webp",
       gallaryImages: [],
       githubFrontendRepo: "https://github.com/iammahir2020/tech-archive-client",
       githubBackendRepo: "https://github.com/iammahir2020/tech-archive-server",

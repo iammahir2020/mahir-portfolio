@@ -56,6 +56,8 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
               <img
                 src={project.coverImage}
                 alt={project.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 dark:opacity-60 group-hover:opacity-100"
               />
               {/* Hover Overlay: full tech stack + view prompt */}
