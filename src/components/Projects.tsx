@@ -121,6 +121,7 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.3 }}
                       src={selectedProject.gallaryImages?.[activeImageIndex] || selectedProject.coverImage}
+                      alt={`${selectedProject.title} screenshot ${activeImageIndex + 1}`}
                       className="w-full h-full object-contain"
                     />
                   </AnimatePresence>
@@ -149,7 +150,7 @@ export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
                           activeImageIndex === idx ? "border-blue-500 scale-95" : "border-transparent opacity-50 hover:opacity-100"
                         }`}
                       >
-                        <img src={img} className="w-full h-full object-cover" />
+                        <img src={img} alt={`${selectedProject.title} thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
                       </button>
                     ))}
                   </div>
